@@ -1,0 +1,123 @@
+# =============================================================================
+# Deep Research System - Tools Configuration
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Search Provider Configuration
+# -----------------------------------------------------------------------------
+search:
+  # Active search provider: tavily, google, bing
+  provider: "tavily"
+  
+  # Tavily Search API
+  tavily:
+    api_key: "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"
+    base_url: "https://api.tavily.com"
+    search_depth: "advanced"  # basic, advanced
+    max_results: 10
+    include_answer: true
+    include_raw_content: false
+  
+  # Google Custom Search API
+  google:
+    api_key: "${GOOGLE_API_KEY}"
+    cx: "${GOOGLE_CX}"  # Custom Search Engine ID
+    base_url: "https://www.googleapis.com/customsearch/v1"
+    max_results: 10
+  
+  # Bing Search API
+  bing:
+    api_key: "${BING_API_KEY}"
+    base_url: "https://api.bing.microsoft.com/v7.0/search"
+    max_results: 10
+    market: "en-US"
+
+# -----------------------------------------------------------------------------
+# RAGFlow API Configuration
+# API文档: https://ragflow.io/docs/dev/http_api_reference
+# -----------------------------------------------------------------------------
+ragflow:
+  enabled: false  # 改为 false 禁用 RAGFlow（如果本地没运行）
+  base_url: "http://localhost:9380"  # RAGFlow API endpoint
+  api_key: "ragflow-T1aeXC3rQSgkRHY-soIYEWwylRq_3UFYi914J8bE1m8"
+  
+  # Dataset/Knowledge base configuration
+  dataset_id: "718f45f9fb6711f088842e67886c7237"  # Default dataset ID (单个)
+  datasets: []    # List of dataset IDs to search (多个)
+  
+  # Retrieval parameters (POST /api/v1/retrieval)
+  retrieval:
+    # top_k: 向量余弦计算的chunk数量 (默认1024)
+    top_k: 1024
+    
+    # similarity_threshold: 最低相似度阈值 (默认0.2)
+    similarity_threshold: 0.2
+    
+    # vector_similarity_weight: 向量相似度权重 (默认0.3)
+    # 如果x是向量相似度权重，则(1-x)是关键词相似度权重
+    vector_similarity_weight: 0.3
+    
+    # rerank_id: Rerank模型ID (为空则不使用rerank)
+    rerank_id: ""
+    
+    # keyword: 是否启用关键词匹配 (默认true)
+    keyword: true
+    
+    # highlight: 是否高亮匹配词 (默认false)
+    highlight: false
+  
+  # Chat/Conversation API (POST /api/v1/chats/{chat_id}/completions)
+  chat:
+    enabled: false
+    chat_id: ""  # Chat assistant ID (从RAGFlow UI获取)
+
+# -----------------------------------------------------------------------------
+# MCP (Model Context Protocol) Configuration
+# -----------------------------------------------------------------------------
+mcp:
+  enabled: false
+  
+  # MCP Server configurations
+  servers:
+    - name: "filesystem"
+      transport: "stdio"
+      command: "npx"
+      args: ["-y", "@modelcontextprotocol/server-filesystem", "/path/to/allowed/dir"]
+      enabled: false
+    
+    - name: "web-search"
+      transport: "stdio"
+      command: "npx"
+      args: ["-y", "@anthropic/mcp-server-web-search"]
+      enabled: false
+    
+    - name: "custom"
+      transport: "sse"
+      url: "http://localhost:8080/mcp"
+      enabled: false
+
+# -----------------------------------------------------------------------------
+# Tool Selection Rules
+# -----------------------------------------------------------------------------
+tool_selection:
+  # Keywords that trigger RAGFlow search
+  rag_keywords:
+    - "内部文档"
+    - "知识库"
+    - "私有数据"
+    - "internal"
+    - "proprietary"
+  
+  # Keywords that trigger web search
+  web_keywords:
+    - "最新"
+    - "新闻"
+    - "当前"
+    - "latest"
+    - "recent"
+    - "news"
+  
+  # Default behavior when no keyword matches
+  default_tools:
+    - "web_search"
+    - "ragflow"

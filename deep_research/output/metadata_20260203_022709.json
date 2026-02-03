@@ -1,0 +1,122 @@
+{
+  "query": "人工智能在医疗领域的应用",
+  "timestamp": "20260203_022709",
+  "sub_tasks": [
+    {
+      "id": "task_1",
+      "question": "人工智能在医疗领域主要应用场景与技术路线有哪些（如影像诊断、临床决策支持、药物研发、患者管理）？",
+      "description": "明确AI在医疗中的关键落地方向与对应技术（机器学习、深度学习、NLP、生成式AI等），为后续评估效果、风险与落地路径提供总体框架。",
+      "priority": 0,
+      "dependencies": [],
+      "status": "pending",
+      "keywords": [
+        "AI医疗应用场景",
+        "医学影像AI",
+        "临床决策支持系统",
+        "医疗NLP",
+        "生成式AI医疗"
+      ],
+      "preferred_sources": [
+        "search",
+        "rag"
+      ]
+    },
+    {
+      "id": "task_2",
+      "question": "AI医疗应用的有效性如何评估：常用数据集、评价指标与临床证据标准是什么？",
+      "description": "聚焦“是否真的有用”和“如何证明有用”，包括模型性能指标（AUC、敏感度/特异度等）、外部验证、前瞻性研究与随机对照试验等证据层级。",
+      "priority": 1,
+      "dependencies": [
+        "task_1"
+      ],
+      "status": "pending",
+      "keywords": [
+        "AI医疗 评价指标",
+        "外部验证 医疗AI",
+        "临床试验 诊断AI",
+        "医学影像 数据集",
+        "real-world evidence 医疗AI"
+      ],
+      "preferred_sources": [
+        "search",
+        "rag"
+      ]
+    },
+    {
+      "id": "task_3",
+      "question": "AI在医疗落地面临的伦理、隐私与安全风险有哪些，如何治理（偏差、公平性、可解释性、数据保护等）？",
+      "description": "识别并分析AI医疗的核心风险与缓解策略，关系到患者安全、社会信任与合规落地，是应用可持续发展的关键约束条件。",
+      "priority": 2,
+      "dependencies": [
+        "task_1"
+      ],
+      "status": "pending",
+      "keywords": [
+        "医疗AI 伦理",
+        "算法偏差 公平性 医疗",
+        "可解释性 医疗AI",
+        "医疗数据隐私",
+        "AI安全 患者安全"
+      ],
+      "preferred_sources": [
+        "search",
+        "rag"
+      ]
+    },
+    {
+      "id": "task_4",
+      "question": "AI医疗产品的监管与合规路径是什么（不同国家/地区：NMPA/FDA/EMA），以及真实世界部署的流程与挑战？",
+      "description": "从法规与流程角度回答“如何进入临床并持续运行”，包括软件即医疗器械（SaMD）、审批要求、持续学习系统监管、医院集成与运维要求。",
+      "priority": 3,
+      "dependencies": [
+        "task_1",
+        "task_3"
+      ],
+      "status": "pending",
+      "keywords": [
+        "SaMD 监管",
+        "FDA AI医疗器械指南",
+        "NMPA 人工智能 医疗器械",
+        "EMA AI 医疗监管",
+        "医院部署 临床集成 AI"
+      ],
+      "preferred_sources": [
+        "search"
+      ]
+    },
+    {
+      "id": "task_5",
+      "question": "AI医疗的成本效益与对医疗体系的影响如何量化（效率、资源配置、医生工作流、患者结局）？",
+      "description": "评估AI应用的经济与组织层面的价值，回答“是否值得投入”和“对医疗服务供给与质量的实际影响”，为政策与采购决策提供依据。",
+      "priority": 4,
+      "dependencies": [
+        "task_1",
+        "task_2"
+      ],
+      "status": "pending",
+      "keywords": [
+        "AI医疗 成本效益分析",
+        "health economics 医疗AI",
+        "工作流影响 临床AI",
+        "医疗资源配置 人工智能",
+        "患者结局 真实世界研究"
+      ],
+      "preferred_sources": [
+        "search",
+        "rag"
+      ]
+    }
+  ],
+  "task_plan": [
+    "task_1",
+    "task_2",
+    "task_3",
+    "task_4",
+    "task_5"
+  ],
+  "raw_data_count": 360,
+  "selected_data_count": 32,
+  "revision_count": 3,
+  "errors": [],
+  "workflow_status": "completed"
+}
